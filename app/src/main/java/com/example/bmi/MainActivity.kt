@@ -7,6 +7,10 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.content.Intent
 import com.example.bmi.Logic.*
+import com.example.bmi.MainActivity.Companion.INPUT_CORRECT_CODE
+import com.example.bmi.MainActivity.Companion.INPUT_EMPTY_ERROR_CODE
+import com.example.bmi.MainActivity.Companion.INPUT_NOT_INTEGER_ERROR_CODE
+import com.example.bmi.MainActivity.Companion.INPUT_NOT_POSITIVE_ERROR_CODE
 import com.example.bmi.R.layout.activity_main
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,15 +19,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var metricUnits = true
-    private var lastHeightValue = 0
-    private var lastWeightValue = 0
 
-    companion object{
+    companion object {
         const val SEV_UNDERWEIGHT_CATEGORY_NAME = "severely underweight"
         const val UNDERWEIGHT_CATEGORY_NAME = "underweight"
         const val OK_CATEGORY_NAME = "normal weight"
         const val OVERWEIGHT_CATEGORY_NAME = "overweight"
         const val SEV_OVERWEIGHT_CATEGORY_NAME = "severely overweight"
+
+        const val INPUT_CORRECT_CODE = 1
+        const val INPUT_NOT_POSITIVE_ERROR_CODE = -1
+        const val INPUT_NOT_INTEGER_ERROR_CODE = -2
+        const val INPUT_EMPTY_ERROR_CODE = -3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +42,10 @@ class MainActivity : AppCompatActivity() {
             calculateBMIAndShowResults()
         }
 
-        goToInfoButton.setOnClickListener{
+        goToInfoButton.setOnClickListener {
             val myIntent = Intent(this, InfoActivity::class.java)
             myIntent.putExtra("categoryName", bmiGroupText.text.toString())
-            myIntent.putExtra("heightValue", lastHeightValue)
+            myIntent.putExtra("heightValue", extractIntFromText(heightText))
             myIntent.putExtra("metricUnits", metricUnits)
             startActivity(myIntent)
         }
@@ -50,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when(item?.itemId) {
+        return when (item?.itemId) {
             R.id.changeUnits -> {
                 switchUnits()
                 true
@@ -94,30 +101,28 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun extractIntFromText(textWithNumber: EditText) : Int{
-        val strText = textWithNumber.text.toString()
-        return if(strText != "")
-            strText.toInt()
-        else
-            0
+    private fun extractIntFromText(textWithNumber: EditText): Int {
+        if(validateInput(textWithNumber) == INPUT_CORRECT_CODE)
+            return textWithNumber.text.toString().toInt()
+        return 0
     }
 
-    private fun calculateBMIAndShowResults(){
-        if(isInputValid(weightText, "weight") && isInputValid(heightText, "height")) {
-            lastWeightValue = extractIntFromText(weightText)
-            lastHeightValue = extractIntFromText(heightText)
+    private fun calculateBMIAndShowResults() {
+        if (!setErrorsAndReturnErrorFlag(weightText, "weight") && !setErrorsAndReturnErrorFlag(heightText, "height")) {
+            val weightValue = extractIntFromText(weightText)
+            val heightValue = extractIntFromText(heightText)
             val bmiCalculator: BMI
-            if(metricUnits)
-                bmiCalculator = BmiForKgCm(lastWeightValue, lastHeightValue)
+            if (metricUnits)
+                bmiCalculator = BmiForKgCm(weightValue, heightValue)
             else
-                bmiCalculator = BmiForInchesPounds(lastWeightValue, lastHeightValue)
+                bmiCalculator = BmiForInchesPounds(weightValue, heightValue)
             val result = bmiCalculator.countBMI()
             setGroupAndColorDependingOnBmiValue(result)
             resultText.text = "%.2f".format(result)
         }
     }
 
-    private fun switchUnits(){
+    private fun switchUnits() {
         metricUnits = !metricUnits
         bmiGroupText.text = ""
         resultText.setTextColor(resources.getColor(R.color.colorSecondary, theme))
@@ -125,19 +130,18 @@ class MainActivity : AppCompatActivity() {
         weightText.text.clear()
         heightText.text.clear()
 
-        if(metricUnits){
+        if (metricUnits) {
             weightIndication.setText(R.string.bmi_main_weight_metric_indication)
             heightIndication.setText(R.string.bmi_main_height_metric_indication)
-        }
-        else{
+        } else {
             weightIndication.setText(R.string.bmi_main_weight_imperial_indication)
             heightIndication.setText(R.string.bmi_main_height_imperial_indication)
         }
     }
 
-    private fun setGroupAndColorDependingOnBmiValue(bmiVal: Double){
+    private fun setGroupAndColorDependingOnBmiValue(bmiVal: Double) {
         var categoryText = OK_CATEGORY_NAME
-        val categoryColorCode:Int
+        val categoryColorCode: Int
         when {
             bmiVal < BMI_LIMIT_BOTTOM -> {
                 categoryText = SEV_UNDERWEIGHT_CATEGORY_NAME
@@ -164,26 +168,35 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun isInputValid(bmiInput: EditText, fieldName: String) : Boolean{
-
-        if(bmiInput.text.isNotEmpty()) {
-            val extractedValue = bmiInput.text.toString().toIntOrNull()
-            return if (extractedValue != null) {
-                if (extractedValue != 0)
-                    true
-                else {
-                    bmiInput.error = "enter positive $fieldName value"
-                    false
-                }
-            }
-            else {
+    private fun setErrorsAndReturnErrorFlag(bmiInput: EditText, fieldName: String): Boolean {
+        val proprietyCode = validateInput(bmiInput)
+        var errorFlag = true
+        when (proprietyCode) {
+            INPUT_CORRECT_CODE ->
+                errorFlag = false
+            INPUT_EMPTY_ERROR_CODE ->
+                bmiInput.error = "enter $fieldName"
+            INPUT_NOT_INTEGER_ERROR_CODE ->
                 bmiInput.error = "enter $fieldName as integer"
-                false
-            }
+            INPUT_NOT_POSITIVE_ERROR_CODE ->
+                bmiInput.error = "enter positive $fieldName value"
         }
-        else{
-            bmiInput.error = "enter $fieldName"
-            return false
-        }
+
+        return errorFlag
+    }
+
+    private fun validateInput(bmiInput: EditText): Int {
+        return if (bmiInput.text.isNotEmpty()) {
+            val extractedValue = bmiInput.text.toString().toIntOrNull()
+            if (extractedValue != null) {
+                if (extractedValue != 0)
+                    INPUT_CORRECT_CODE
+                else
+                    INPUT_NOT_POSITIVE_ERROR_CODE
+            } else
+                INPUT_NOT_INTEGER_ERROR_CODE
+        } else
+            INPUT_EMPTY_ERROR_CODE
     }
 }
+
