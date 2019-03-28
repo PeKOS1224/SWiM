@@ -37,4 +37,9 @@
     </string>
     <string name="weight_field_name">weight</string>
     <string name="height_field_name">height</string>
+    <string name="bmi_category_sev_underweight">severely underweight</string>
+    <string name="bmi_category_underweight">underweight</string>
+    <string name="bmi_category_normal">normal weight</string>
+    <string name="bmi_category_overweight">overweight</string>
+    <string name="bmi_category_sev_overweight">severely overweight</string>
 </resources>

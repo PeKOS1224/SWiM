@@ -21,12 +21,6 @@ class MainActivity : AppCompatActivity() {
     private var metricUnits = true
 
     companion object {
-        const val SEV_UNDERWEIGHT_CATEGORY_NAME = "severely underweight"
-        const val UNDERWEIGHT_CATEGORY_NAME = "underweight"
-        const val OK_CATEGORY_NAME = "normal weight"
-        const val OVERWEIGHT_CATEGORY_NAME = "overweight"
-        const val SEV_OVERWEIGHT_CATEGORY_NAME = "severely overweight"
-
         const val INPUT_CORRECT_CODE = 1
         const val INPUT_NOT_POSITIVE_ERROR_CODE = -1
         const val INPUT_NOT_INTEGER_ERROR_CODE = -2
@@ -41,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         const val KEY_CATEGORY_NAME = "categoryName"
         const val KEY_HEIGHT_VAL = "heightValue"
         const val KEY_METRIC_UNITS = "metricUnits"
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,29 +145,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setGroupAndColorDependingOnBmiValue(bmiVal: Double) {
-        var categoryText = OK_CATEGORY_NAME
+        var categoryText = R.string.bmi_category_normal
         val categoryColorCode: Int
         when {
             bmiVal < BMI_LIMIT_BOTTOM -> {
-                categoryText = SEV_UNDERWEIGHT_CATEGORY_NAME
+                categoryText = R.string.bmi_category_sev_underweight
                 categoryColorCode = resources.getColor(R.color.navyBlue, theme)
             }
             bmiVal < BMI_LIMIT_LOWER -> {
-                categoryText = UNDERWEIGHT_CATEGORY_NAME
+                categoryText = R.string.bmi_category_underweight
                 categoryColorCode = resources.getColor(R.color.lapisLazuli, theme)
             }
             bmiVal < BMI_LIMIT_UPPER ->
                 categoryColorCode = resources.getColor(R.color.verdigris, theme)
             bmiVal < BMI_LIMIT_TOP -> {
-                categoryText = OVERWEIGHT_CATEGORY_NAME
+                categoryText = R.string.bmi_category_overweight
                 categoryColorCode = resources.getColor(R.color.rose, theme);
             }
             else -> {
-                categoryText = SEV_OVERWEIGHT_CATEGORY_NAME
+                categoryText = R.string.bmi_category_sev_overweight
                 categoryColorCode = resources.getColor(R.color.pompeianRose, theme)
             }
         }
-        bmiGroupText.text = categoryText
+        bmiGroupText.text = getString(categoryText)
         resultText.setTextColor(categoryColorCode)
         bmiGroupText.setTextColor(categoryColorCode)
 

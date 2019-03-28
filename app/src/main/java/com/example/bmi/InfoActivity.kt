@@ -24,7 +24,7 @@ class InfoActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         bmiCategoryName = intent.getStringExtra(MainActivity.KEY_CATEGORY_NAME)
-        heightValue = intent.getIntExtra(MainActivity.KEY_HEIGHT_INDICATION, 0)
+        heightValue = intent.getIntExtra(MainActivity.KEY_HEIGHT_VAL, 0)
         metricUnits = intent.getBooleanExtra(MainActivity.KEY_METRIC_UNITS, true)
         setScreenAccordinglyToCategory()
         setScreenAccordinglyToHeight()
@@ -57,15 +57,15 @@ class InfoActivity : AppCompatActivity() {
     private fun setScreenAccordinglyToCategory() {
         val matchingLeftText:String
         when (bmiCategoryName) {
-            MainActivity.OK_CATEGORY_NAME -> {
+            getString(R.string.bmi_category_normal)-> {
                 bmiReaction.setImageResource(R.drawable.happy)
                 matchingLeftText = getString(R.string.info_healthy_weight_description)
             }
-            MainActivity.OVERWEIGHT_CATEGORY_NAME, MainActivity.UNDERWEIGHT_CATEGORY_NAME -> {
+            getString(R.string.bmi_category_overweight),  getString(R.string.bmi_category_underweight) -> {
                 bmiReaction.setImageResource(R.drawable.worried)
                 matchingLeftText = getString(R.string.info_over_under_weight_description)
             }
-            MainActivity.SEV_OVERWEIGHT_CATEGORY_NAME, MainActivity.SEV_UNDERWEIGHT_CATEGORY_NAME -> {
+            getString(R.string.bmi_category_sev_overweight),  getString(R.string.bmi_category_sev_underweight) -> {
                 bmiReaction.setImageResource(R.drawable.sad)
                 matchingLeftText = getString(R.string.info_sev_over_under_weight_description)
             }
