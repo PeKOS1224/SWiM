@@ -31,6 +31,17 @@ class MainActivity : AppCompatActivity() {
         const val INPUT_NOT_POSITIVE_ERROR_CODE = -1
         const val INPUT_NOT_INTEGER_ERROR_CODE = -2
         const val INPUT_EMPTY_ERROR_CODE = -3
+
+        const val KEY_RESULT_TEXT = "savedResultText"
+        const val KEY_CATEGORY_TEXT = "savedCategoryText"
+        const val KEY_COLOR_CODE = "savedColorCode"
+        const val KEY_WEIGHT_INDICATION = "weightIndicationText"
+        const val KEY_HEIGHT_INDICATION = "heightIndicationText"
+
+        const val KEY_CATEGORY_NAME = "categoryName"
+        const val KEY_HEIGHT_VAL = "heightValue"
+        const val KEY_METRIC_UNITS = "metricUnits"
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +55,9 @@ class MainActivity : AppCompatActivity() {
 
         goToInfoButton.setOnClickListener {
             val myIntent = Intent(this, InfoActivity::class.java)
-            myIntent.putExtra("categoryName", bmiGroupText.text.toString())
-            myIntent.putExtra("heightValue", extractIntFromText(heightText))
-            myIntent.putExtra("metricUnits", metricUnits)
+            myIntent.putExtra(KEY_CATEGORY_NAME, bmiGroupText.text.toString())
+            myIntent.putExtra(KEY_HEIGHT_VAL, extractIntFromText(heightText))
+            myIntent.putExtra(KEY_METRIC_UNITS, metricUnits)
             startActivity(myIntent)
         }
     }
@@ -83,21 +94,21 @@ class MainActivity : AppCompatActivity() {
         val weightIndicationText = weightIndication.text.toString()
         val heightIndicationText = heightIndication.text.toString()
 
-        outState.putString("savedResultText", resText)
-        outState.putString("savedCategoryText", categoryText)
-        outState.putInt("savedColorCode", categoryColorCode)
-        outState.putString("weightIndicationText", weightIndicationText)
-        outState.putString("heightIndicationText", heightIndicationText)
+        outState.putString(KEY_RESULT_TEXT, resText)
+        outState.putString(KEY_CATEGORY_TEXT, categoryText)
+        outState.putInt(KEY_COLOR_CODE, categoryColorCode)
+        outState.putString(KEY_WEIGHT_INDICATION, weightIndicationText)
+        outState.putString(KEY_HEIGHT_INDICATION, heightIndicationText)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        resultText.text = savedInstanceState?.getString("savedResultText")
-        bmiGroupText.text = savedInstanceState?.getString("savedCategoryText")
-        resultText.setTextColor(savedInstanceState?.getInt("savedColorCode")!!)
-        bmiGroupText.setTextColor(savedInstanceState.getInt("savedColorCode"))
-        weightIndication.text = savedInstanceState.getString("weightIndicationText")
-        heightIndication.text = savedInstanceState.getString("heightIndicationText")
+        resultText.text = savedInstanceState?.getString(KEY_RESULT_TEXT)
+        bmiGroupText.text = savedInstanceState?.getString(KEY_CATEGORY_TEXT)
+        resultText.setTextColor(savedInstanceState?.getInt(KEY_COLOR_CODE)!!)
+        bmiGroupText.setTextColor(savedInstanceState.getInt(KEY_COLOR_CODE))
+        weightIndication.text = savedInstanceState.getString(KEY_WEIGHT_INDICATION)
+        heightIndication.text = savedInstanceState.getString(KEY_HEIGHT_INDICATION)
 
     }
 
@@ -108,7 +119,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateBMIAndShowResults() {
-        if (!setErrorsAndReturnErrorFlag(weightText, "weight") && !setErrorsAndReturnErrorFlag(heightText, "height")) {
+        if (!setErrorsAndReturnErrorFlag(weightText, getString(R.string.weight_field_name)) &&
+            !setErrorsAndReturnErrorFlag(heightText, getString(R.string.height_field_name))) {
             val weightValue = extractIntFromText(weightText)
             val heightValue = extractIntFromText(heightText)
             val bmiCalculator: BMI

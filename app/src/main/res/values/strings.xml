@@ -35,4 +35,6 @@
     <string name="info_sev_over_under_weight_description">Oh no! Your BMI index is far from healthy weight category. You
         need to change your diet.
     </string>
+    <string name="weight_field_name">weight</string>
+    <string name="height_field_name">height</string>
 </resources>

@@ -23,9 +23,9 @@ class InfoActivity : AppCompatActivity() {
 
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        bmiCategoryName = intent.getStringExtra("categoryName")
-        heightValue = intent.getIntExtra("heightValue", 0)
-        metricUnits = intent.getBooleanExtra("metricUnits", true)
+        bmiCategoryName = intent.getStringExtra(MainActivity.KEY_CATEGORY_NAME)
+        heightValue = intent.getIntExtra(MainActivity.KEY_HEIGHT_INDICATION, 0)
+        metricUnits = intent.getBooleanExtra(MainActivity.KEY_METRIC_UNITS, true)
         setScreenAccordinglyToCategory()
         setScreenAccordinglyToHeight()
     }
