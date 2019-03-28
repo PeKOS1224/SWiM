@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title = "@string/bmi_about_me_label"
+          app:showAsAction="never"
+          android:id = "@+id/aboutMe"/>
+    <item android:id="@+id/changeUnits"
+          app:showAsAction="never"
+          android:title="@string/bmi_menu_change_units"/>
+    <item android:id="@+id/history"
+          app:showAsAction="never"
+          android:title="@string/bmi_menu_history"/>
+</menu>

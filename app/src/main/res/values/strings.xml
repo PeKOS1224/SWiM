@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">BMI</string>
+
+    <string name="bmi_main_count">Count BMI</string>
+    <string name="bmi_main_result_default_text">Your BMI</string>
+    <string name="bmi_main_weight_metric_indication">weight[kg]:</string>
+    <string name="bmi_main_height_metric_indication">height[cm]:</string>
+    <string name="bmi_main_weight_imperial_indication">weight[lb]:</string>
+    <string name="bmi_main_height_imperial_indication">height[in]:</string>
+    <string name="bmi_main_height_hint">height</string>
+    <string name="bmi_main_weight_hint">weight</string>
+    <string name="bmi_main_image_description">Image showing BMI app title image</string>
+    <string name="bmi_go_to_info_button_description">button that opens info activity</string>
+
+    <string name="bmi_about_me_first_text">MiIt</string>
+    <string name="bmi_about_me_second_text">Bóg</string>
+    <string name="bmi_about_me_third_text">honor</string>
+    <string name="bmi_about_me_fourth_text">Ojczyzna</string>
+
+    <string name="info_category_react_description">image showing emoji reaction to different bmi categories</string>
+    <string name="info_no_data_left">Calculate your BMI to get more info</string>
+    <string name="info_no_data_right">Enter correct height value to calculate your ideal weight</string>>
+    <string name="bmi_info_label">Info</string>
+
+    <string name="bmi_about_me_label">About Me</string>
+    <string name="bmi_menu_change_units">Change Units</string>
+    <string name="bmi_menu_history">History</string>
+    <string name="metric_weight_unit">kg</string>
+    <string name="imperial_weight_unit">lb</string>
+    <string name="info_healthy_weight_description">Hooray! Your BMI fits into healthy weight category. Keep it up!
+    </string>
+    <string name="info_over_under_weight_description">Almost there! Your BMI index is very close to healthy weight
+        category. A little more effort and You\'ll get there!
+    </string>
+    <string name="info_sev_over_under_weight_description">Oh no! Your BMI index is far from healthy weight category. You
+        need to change your diet.
+    </string>
+</resources>

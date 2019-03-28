@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:showIn="@layout/activity_info"
+        tools:context=".InfoActivity"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_height="@dimen/info_reaction_image_height"
+            android:layout_width="match_parent"
+            app:srcCompat="@drawable/no_info"
+            android:layout_alignParentTop="true"
+            android:id="@+id/bmiReaction"
+            android:contentDescription="@string/info_category_react_description"
+            android:background="@drawable/frame"
+            android:padding="@dimen/info_padding"
+            android:layout_marginBottom="@dimen/info_margin_between_elements_half"
+            android:layout_marginEnd="@dimen/info_margin_between_elements"
+            android:layout_marginStart="@dimen/info_margin_between_elements"
+            android:layout_marginTop="@dimen/info_margin_between_elements"/>
+    <View android:id="@+id/fakeView"
+          android:layout_width="@dimen/info_fake_view_width"
+          android:layout_height="@dimen/info_fake_view_height"
+          android:layout_centerInParent="true"/>
+    <TextView
+            android:layout_alignEnd="@id/fakeView"
+            android:layout_below="@id/bmiReaction"
+            android:gravity="center"
+            android:background="@drawable/frame"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/info_no_data_left"
+            android:id="@+id/infoTextLeft"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/lightTextColor" android:textSize="24sp"
+            android:padding="@dimen/info_text_padding"
+            android:layout_marginBottom="@dimen/info_margin_between_elements"
+            android:layout_marginStart="@dimen/info_margin_between_elements"
+            android:layout_marginEnd="@dimen/info_margin_between_elements_half"
+            android:layout_marginTop="@dimen/info_margin_between_elements_half"/>
+    <TextView
+            android:layout_alignStart="@id/fakeView"
+            android:gravity="center"
+            android:layout_below="@id/bmiReaction"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/infoTextLeft"
+            android:text="@string/info_no_data_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/infoTextRight"
+            android:fontFamily="@font/roboto" android:background="@drawable/frame"
+            android:textColor="@color/lightTextColor"
+            android:textSize="24sp"
+            android:padding="@dimen/info_text_padding" android:layout_marginBottom="@dimen/info_margin_between_elements"
+            android:layout_marginEnd="@dimen/info_margin_between_elements"
+            android:layout_marginStart="@dimen/info_margin_between_elements_half"
+            android:layout_marginTop="@dimen/info_margin_between_elements_half"/>
+</RelativeLayout >

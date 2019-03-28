@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9ccc65</color>
+    <color name="colorPrimaryDark">#6b9b37</color>
+    <color name="colorPrimaryLight">#CFFF95</color>
+    <color name="colorPrimaryUltraLight">#E0FFC3</color>
+    <color name="colorSecondary">#EFA7AC</color>
+    <color name="colorAccent">#00BCD4</color>
+    <color name="textColor">#212121</color>
+    <color name="lightTextColor">#FFFFFF</color>
+
+    <color name = "navyBlue">#0F0F94</color>
+    <color name="lapisLazuli">#26619c</color>
+    <color name="verdigris">#43b3ae</color>
+    <color name = "rose">#FF5893</color>
+    <color name = "pompeianRose">#b80000</color>
+
+</resources>
+
+<!--<resources>-->
+    <!--<color name="colorPrimary">#ec407a</color>-->
+    <!--<color name="colorPrimaryDark">#b4004e</color>-->
+    <!--<color name="colorPrimaryLight">#ff77a9</color>-->
+    <!--<color name="colorPrimaryUltraLight">#FF9CB9</color>-->
+    <!--<color name="colorAccent">#00BCD4</color>-->
+    <!--<color name="textColor">#212121</color>-->
+    <!--<color name="LightTextColor">#FFFFFF</color>-->
+
+    <!--<color name = "navyBlue">#0F0F94</color>-->
+    <!--<color name="lapisLazuli">#26619c</color>-->
+    <!--<color name="verdigris">#43b3ae</color>-->
+    <!--<color name="rose">#FF5893</color>-->
+    <!--<color name="pompeianRose">#b80000</color>-->
+
+<!--</resources>-->
+
+<!--<resources>v3-->
+    <!--<color name="colorPrimary">#efa7ac</color>-->
+    <!--<color name="colorPrimaryDark">#bb777d</color>-->
+    <!--<color name="colorPrimaryLight">#ffd9de</color>-->
+    <!--<color name="colorPrimaryUltraLight">#FF9CB9</color>-->
+    <!--<color name="colorAccent">#00BCD4</color>-->
+    <!--<color name="textColor">#212121</color>-->
+    <!--<color name="LightTextColor">#FFFFFF</color>-->
+
+    <!--<color name = "navyBlue">#0F0F94</color>-->
+    <!--<color name="lapisLazuli">#26619c</color>-->
+    <!--<color name="verdigris">#43b3ae</color>-->
+    <!--<color name="rose">#FF5893</color>-->
+    <!--<color name="pompeianRose">#b80000</color>-->
+
+<!--</resources>-->

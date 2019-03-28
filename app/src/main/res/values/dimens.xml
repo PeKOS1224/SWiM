@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bmi_margin_side">8dp</dimen>
+    <dimen name="bmi_margin_end">8dp</dimen>
+    <dimen name="bmi_margin_start">8dp</dimen>
+    <dimen name="bmi_margin_screen_bottom">24dp</dimen>
+    <dimen name="bmi_margin_bottom">8dp</dimen>
+    <dimen name="bmi_margin_top">8dp</dimen>
+    <dimen name="bmi_zero_length">0dp</dimen>
+    <dimen name="bmi_count_button_height">57dp</dimen>
+    <dimen name="bmi_text_field_height">41dp</dimen>
+    <dimen name="bmi_value_indication_height">25dp</dimen>
+
+    <dimen name="info_fake_view_width">0dp</dimen>
+    <dimen name="info_fake_view_height">0dp</dimen>
+    <dimen name="info_reaction_image_height">250dp</dimen>
+    <dimen name="info_padding">2dp</dimen>
+    <dimen name="info_text_padding">4dp</dimen>
+    <dimen name="info_margin_between_elements">2dp</dimen>
+    <dimen name="info_margin_between_elements_half">1dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="bmi_count_button_radius">10dp</dimen>
+    <dimen name="bmi_info_frame_radius">5dp</dimen>
+</resources>

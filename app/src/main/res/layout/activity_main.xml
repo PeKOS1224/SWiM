@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:fillViewport="true"
+        android:id="@+id/scrollView">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity" android:id="@+id/bmiLayout">
+        <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
+        <ImageButton
+                android:layout_width="@dimen/bmi_zero_length"
+                android:layout_height="@dimen/bmi_zero_length"
+                app:srcCompat="@drawable/info_button"
+                android:id="@+id/goToInfoButton" android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/bmi_margin_end" app:layout_constraintStart_toStartOf="@+id/guideline3"
+                android:layout_marginTop="@dimen/bmi_margin_top" app:layout_constraintTop_toTopOf="@+id/guideline4"
+                android:contentDescription="@string/bmi_go_to_info_button_description"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="@dimen/bmi_margin_bottom"
+                app:layout_constraintBottom_toTopOf="@+id/guideline7"
+                android:layout_marginStart="@dimen/bmi_margin_start"/>
+
+
+        <ImageView
+                android:layout_width="@dimen/bmi_zero_length"
+                android:layout_height="@dimen/bmi_zero_length" app:srcCompat="@drawable/bmi_main_image"
+                android:id="@+id/mainImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/bmi_main_image_description"
+                app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:scaleType="fitXY"/>
+        <Button
+                android:text="@string/bmi_main_count"
+                android:layout_width="@dimen/bmi_zero_length"
+                android:layout_height="@dimen/bmi_count_button_height" android:id="@+id/countBtn"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/bmi_margin_end"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/bmi_margin_start"
+                android:background="@drawable/count_button"
+                android:textSize="30sp" app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="@dimen/bmi_margin_top" app:layout_constraintTop_toTopOf="@+id/guideline7"
+                android:layout_marginBottom="@dimen/bmi_margin_bottom" app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/lightTextColor"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto" android:textStyle="bold"/>
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/guideline6"
+                                                    android:orientation="horizontal"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintEnd_toStartOf="@+id/mainImage"
+                                                    android:layout_marginEnd="@dimen/bmi_margin_end"
+                                                    app:layout_constraintGuide_percent="0.4"/>
+        <EditText
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:gravity="center"
+                android:id="@+id/weightText"
+                android:hint="@string/bmi_main_weight_hint"
+                android:layout_height="@dimen/bmi_text_field_height"
+                android:layout_width="@dimen/bmi_zero_length"
+                android:layout_marginTop="@dimen/bmi_margin_top"
+                app:layout_constraintTop_toBottomOf="@+id/weightIndication"
+                android:layout_marginEnd="@dimen/bmi_margin_end" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/bmi_margin_start" app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/roboto"/>
+        <EditText
+                android:layout_width="@dimen/bmi_zero_length"
+                android:layout_height="@dimen/bmi_text_field_height"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/heightText"
+                android:gravity="center"
+                android:hint="@string/bmi_main_height_hint"
+                android:layout_marginEnd="@dimen/bmi_margin_end" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/bmi_margin_start" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heightIndication"
+                android:layout_marginTop="@dimen/bmi_margin_top"
+                android:fontFamily="@font/roboto"/>
+        <TextView
+                android:text="@string/bmi_main_result_default_text"
+                android:layout_height="@dimen/bmi_zero_length"
+                android:id="@+id/resultText"
+                android:layout_width="@dimen/bmi_zero_length"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/bmi_margin_start"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="@dimen/bmi_margin_bottom"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                android:layout_marginEnd="@dimen/bmi_margin_end" app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                android:layout_marginTop="@dimen/bmi_margin_top" app:layout_constraintTop_toTopOf="@+id/guideline4"
+                android:fontFamily="@font/roboto" android:textSize="45sp"
+                android:textColor="@color/colorSecondary"/>
+        <TextView
+                android:text="@string/bmi_main_weight_metric_indication"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bmi_value_indication_height" android:id="@+id/weightIndication"
+                android:textSize="18sp"
+                android:layout_marginTop="@dimen/bmi_margin_top"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/bmi_margin_start"
+                android:layout_marginEnd="@dimen/bmi_margin_end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mainImage" app:layout_constraintHorizontal_bias="0.0"
+                android:fontFamily="@font/roboto" android:textColor="@color/textColor"/>
+        <TextView
+                android:text="@string/bmi_main_height_metric_indication"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bmi_value_indication_height" android:id="@+id/heightIndication"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/bmi_margin_start"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/bmi_margin_top"
+                app:layout_constraintTop_toBottomOf="@+id/weightText" android:layout_marginEnd="@dimen/bmi_margin_end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0" android:fontFamily="@font/roboto"
+                android:textColor="@color/textColor"/>
+        <TextView
+                android:layout_width="@dimen/bmi_zero_length"
+                android:gravity="center"
+                android:layout_height="@dimen/bmi_zero_length" android:id="@+id/bmiGroupText"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/bmi_margin_start"
+                android:layout_marginTop="@dimen/bmi_margin_top"
+                app:layout_constraintTop_toTopOf="@+id/guideline" android:textSize="24sp"
+                android:layout_marginEnd="@dimen/bmi_margin_end"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                android:layout_marginBottom="@dimen/bmi_margin_bottom"
+                app:layout_constraintBottom_toTopOf="@+id/guideline7" android:fontFamily="@font/roboto"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline7" app:layout_constraintGuide_percent="0.88"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline" app:layout_constraintGuide_percent="0.8"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline3" app:layout_constraintGuide_percent="0.75"/>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline4" app:layout_constraintGuide_percent="0.67"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+        <!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
