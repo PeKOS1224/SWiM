@@ -27,6 +27,8 @@
     <string name="bmi_menu_history">History</string>
     <string name="metric_weight_unit">kg</string>
     <string name="imperial_weight_unit">lb</string>
+    <string name="metric_height_unit">cm</string>
+    <string name="imperial_height_unit">in</string>
     <string name="info_healthy_weight_description">Hooray! Your BMI fits into healthy weight category. Keep it up!
     </string>
     <string name="info_over_under_weight_description">Almost there! Your BMI index is very close to healthy weight
@@ -42,5 +44,10 @@
     <string name="bmi_category_normal">normal weight</string>
     <string name="bmi_category_overweight">overweight</string>
     <string name="bmi_category_sev_overweight">severely overweight</string>
-    <string name="title_activity_history">HistoryActivity</string>
+
+    <string name="title_activity_history">History</string>
+    <string name="bmi_history_default_height_label">height:</string>
+    <string name="bmi_history_default_weight_label">weight:</string>
+    <string name="bmi_history_default_date_label">date:</string>
+    <string name="bmi_history_default_bmi_label">BMI:</string>
 </resources>

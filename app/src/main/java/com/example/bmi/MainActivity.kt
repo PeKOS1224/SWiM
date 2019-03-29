@@ -1,5 +1,6 @@
 package com.example.bmi
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -7,18 +8,18 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.content.Intent
 import com.example.bmi.Logic.*
-import com.example.bmi.MainActivity.Companion.INPUT_CORRECT_CODE
-import com.example.bmi.MainActivity.Companion.INPUT_EMPTY_ERROR_CODE
-import com.example.bmi.MainActivity.Companion.INPUT_NOT_INTEGER_ERROR_CODE
-import com.example.bmi.MainActivity.Companion.INPUT_NOT_POSITIVE_ERROR_CODE
 import com.example.bmi.R.layout.activity_main
 import kotlinx.android.synthetic.main.activity_main.*
-
+import java.util.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 class MainActivity : AppCompatActivity() {
 
     private var metricUnits = true
+    private var readFromSP = true
+    private var entriesQueue = BmiEntriesQueue()
 
     companion object {
         const val INPUT_CORRECT_CODE = 1
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         const val KEY_CATEGORY_NAME = "categoryName"
         const val KEY_HEIGHT_VAL = "heightValue"
         const val KEY_METRIC_UNITS = "metricUnits"
+
+        const val HISTORY_SP: String = "historySharedPreferences"
+        const val HISTORY_SP_KEY: String = "history"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         countBtn.setOnClickListener {
-            calculateBMIAndShowResults()
+            proceedToCalculatingBmi()
         }
 
         goToInfoButton.setOnClickListener {
@@ -67,13 +71,13 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.aboutMe -> {
-                val myIntent = Intent(this, ActivityAboutMe::class.java)
-                startActivity(myIntent)
+                val aboutMeIntent = Intent(this, ActivityAboutMe::class.java)
+                startActivity(aboutMeIntent)
                 true
             }
             R.id.history -> {
-                val myIntent = Intent(this, HistoryActivity:: class.java)
-                startActivity(myIntent)
+                val historyIntent = Intent(this, HistoryActivity:: class.java)
+                startActivity(historyIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -112,7 +116,34 @@ class MainActivity : AppCompatActivity() {
         return 0
     }
 
-    private fun calculateBMIAndShowResults() {
+    private fun proceedToCalculatingBmi() {
+        val successfulCalculation =  calculateBMIAndShowResults()
+        if (successfulCalculation) {
+            saveResultAsEntry()
+        }
+    }
+
+    private fun saveResultAsEntry() {
+        val result = BmiHistoryEntry(resultText.text.toString(), resultText.currentTextColor,
+            heightText.text.toString(), weightText.text.toString(), metricUnits, Date())
+
+        val historySP = getSharedPreferences(HISTORY_SP, Context.MODE_PRIVATE)
+
+        if(readFromSP && historySP.getString(MainActivity.HISTORY_SP_KEY, null) != null){
+            val typeToken = object : TypeToken<BmiEntriesQueue>() {}
+            entriesQueue = Gson().fromJson<BmiEntriesQueue>(historySP.getString(HISTORY_SP_KEY, ""), typeToken.type)
+            readFromSP = false
+        }
+        entriesQueue.add(result)
+
+        val prefsEditor = historySP.edit()
+        val gson = Gson()
+        val jsonEntries = gson.toJson(entriesQueue)
+        prefsEditor.putString(HISTORY_SP_KEY, jsonEntries)
+        prefsEditor.apply()
+    }
+
+    private fun calculateBMIAndShowResults(): Boolean {
         if (!setErrorsAndReturnErrorFlag(weightText, getString(R.string.weight_field_name)) &&
             !setErrorsAndReturnErrorFlag(heightText, getString(R.string.height_field_name))) {
             val weightValue = extractIntFromText(weightText)
@@ -125,7 +156,9 @@ class MainActivity : AppCompatActivity() {
             val result = bmiCalculator.countBMI()
             setGroupAndColorDependingOnBmiValue(result)
             resultText.text = "%.2f".format(result)
+            return true
         }
+        return false
     }
 
     private fun switchUnits() {

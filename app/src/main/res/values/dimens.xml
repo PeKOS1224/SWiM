@@ -22,4 +22,6 @@
     <dimen name="bmi_count_button_radius">10dp</dimen>
     <dimen name="bmi_info_frame_radius">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="history_text_padding">10dp</dimen>
+    <dimen name="bmi_history_text_margin">8dp</dimen>
 </resources>
