@@ -42,4 +42,5 @@
     <string name="bmi_category_normal">normal weight</string>
     <string name="bmi_category_overweight">overweight</string>
     <string name="bmi_category_sev_overweight">severely overweight</string>
+    <string name="title_activity_history">HistoryActivity</string>
 </resources>

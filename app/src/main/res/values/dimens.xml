@@ -21,4 +21,5 @@
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="bmi_count_button_radius">10dp</dimen>
     <dimen name="bmi_info_frame_radius">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

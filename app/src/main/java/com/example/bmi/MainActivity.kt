@@ -72,7 +72,8 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.history -> {
-                //TODO implement this till Sunday
+                val myIntent = Intent(this, HistoryActivity:: class.java)
+                startActivity(myIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
