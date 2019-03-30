@@ -27,9 +27,9 @@ class HistoryActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val historySP = getSharedPreferences(HISTORY_SP, Context.MODE_PRIVATE)
-        if(historySP.getString(MainActivity.HISTORY_SP_KEY, null) != null){
-            val typeToken = object : TypeToken<BmiEntriesQueue>() {}
-            bmiDataHistory = Gson().fromJson<BmiEntriesQueue>(historySP.getString(HISTORY_SP_KEY, ""), typeToken.type)
+        if(historySP.contains(HISTORY_SP_KEY)){
+            val type = object : TypeToken<BmiEntriesQueue>() {}.type
+            bmiDataHistory = Gson().fromJson<BmiEntriesQueue>(historySP.getString(HISTORY_SP_KEY, ""), type)
         }
 
         historyRV.layoutManager = LinearLayoutManager(this)

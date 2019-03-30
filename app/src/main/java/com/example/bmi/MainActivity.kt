@@ -129,9 +129,9 @@ class MainActivity : AppCompatActivity() {
 
         val historySP = getSharedPreferences(HISTORY_SP, Context.MODE_PRIVATE)
 
-        if(readFromSP && historySP.getString(MainActivity.HISTORY_SP_KEY, null) != null){
-            val typeToken = object : TypeToken<BmiEntriesQueue>() {}
-            entriesQueue = Gson().fromJson<BmiEntriesQueue>(historySP.getString(HISTORY_SP_KEY, ""), typeToken.type)
+        if(readFromSP && historySP.contains(HISTORY_SP_KEY)){
+            val type = object : TypeToken<BmiEntriesQueue>() {}.type
+            entriesQueue = Gson().fromJson<BmiEntriesQueue>(historySP.getString(HISTORY_SP_KEY, ""), type)
             readFromSP = false
         }
         entriesQueue.add(result)

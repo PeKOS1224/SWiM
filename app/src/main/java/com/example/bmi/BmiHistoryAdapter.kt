@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bmi.Logic.BmiEntriesQueue
 import com.example.bmi.Logic.BmiHistoryEntry
 
-class BmiHistoryAdapter(val bmiEntries: BmiEntriesQueue) : RecyclerView.Adapter<BmiHistoryAdapter.ViewHolder>() {
+class BmiHistoryAdapter(bmiEntries: BmiEntriesQueue) : RecyclerView.Adapter<BmiHistoryAdapter.ViewHolder>() {
 
     private val entriesSet:ArrayList<BmiHistoryEntry> = bmiEntries.asArrayList()
     private lateinit var currentEntry: BmiHistoryEntry
