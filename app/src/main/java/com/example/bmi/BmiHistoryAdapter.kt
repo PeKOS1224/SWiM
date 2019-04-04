@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmi.Logic.BmiEntriesQueue
 import com.example.bmi.Logic.BmiHistoryEntry
+import java.text.DateFormat
 
 class BmiHistoryAdapter(bmiEntries: BmiEntriesQueue) : RecyclerView.Adapter<BmiHistoryAdapter.ViewHolder>() {
 
@@ -34,7 +35,8 @@ class BmiHistoryAdapter(bmiEntries: BmiEntriesQueue) : RecyclerView.Adapter<BmiH
             holder.weightLabel.setText(R.string.bmi_main_weight_imperial_indication)
         }
 
-        holder.date.text = currentEntry.date.toString()
+        val dateInstance =  DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
+        holder.date.text = dateInstance.format(currentEntry.date)
     }
 
     override fun getItemCount() = entriesSet.size
